@@ -935,5 +935,46 @@ class Character(commands.Cog):
 
     # === TODO-Miscellaneous ===
 
+    #Command works fine, but does not show on discord side. Needs fix.
+    @commands.group(invoke_without_command=True)
+    async def misc(self, ctx):
+        print("MISC COMMAND HIT")
+        char = read_character(ctx.guild.id, ctx.author.id)
+
+        skills = {"misc_athletics_prof": "athletics",
+                  "misc_acrobatics_prof" :"acrobatics",
+                  "misc_sleight_of_hand_prof": "sleight of hand",
+                  "misc_stealth_prof": "stealth",
+                  "misc_arcana_prof": "arcana",
+                  "misc_history_prof": "history",
+                  "misc_investigation_prof": "investigation",
+                  "misc_nature_prof": "nature",
+                  "misc_religion_prof": "religion",
+                  "misc_animal_handling_prof": "animal handling", 
+                  "misc_insight_prof": "insight",
+                  "misc_medicine_prof": "medicine",
+                  "misc_perception_prof": "perception",
+                  "misc_survival_prof": "survival",
+                  "misc_deception_prof": "deception",
+                  "misc_intimidation_prof": "intimidation",
+                  "misc_performance_prof": "performance",
+                  "misc_persuasion_prof": "persuasion"}
+        
+        message = ""
+
+        for key, skill_name in skills.items():
+            value = char.get(key, 0)
+            if value != 0:
+                message += f"**{skill_name}:** {value}\n"
+
+        if message == "":
+            message = "no hablo ingles"
+
+        await ctx.send(message)
+
+        
+        
+        
+
 def setup(bot: commands.Bot):
     bot.add_cog(Character(bot))
