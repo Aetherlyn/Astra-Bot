@@ -934,7 +934,7 @@ class Character(commands.Cog):
             return
 
     # === TODO-Miscellaneous ===
-    
+
     @commands.group(invoke_without_command=True)
     async def misc(self, ctx):
         char = read_character(ctx.guild.id, ctx.author.id)
@@ -966,9 +966,12 @@ class Character(commands.Cog):
                 message += f"**{skill_name}:** {value}\n"
 
         if message == "":
-            message = "nothing"
+            message = "You do not have any miscellaneous bonuses."
 
-        await ctx.send(message)
+        embed = discord.Embed(title = "", color = discord.Color.dark_gold())
+        embed.add_field(name="", value=message, inline=False)
+
+        await ctx.send(embed=embed)
 
         
         
