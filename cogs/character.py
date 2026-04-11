@@ -956,7 +956,13 @@ class Character(commands.Cog):
                   "misc_deception_prof": "deception",
                   "misc_intimidation_prof": "intimidation",
                   "misc_performance_prof": "performance",
-                  "misc_persuasion_prof": "persuasion"}
+                  "misc_strength_save_prof": "str save",
+                  "misc_dexterity_save_prof": "dex save",
+                  "misc_constitution_save_prof": "con save",
+                  "misc_intelligence_save_prof": "int save",
+                  "misc_wisdom_save_prof": "wis save",
+                  "misc_charisma_save_prof": "chr save",
+                  }
         
         message = ""
 
