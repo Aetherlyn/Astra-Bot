@@ -930,7 +930,7 @@ class Character(commands.Cog):
                 await ctx.send(f"You already don't have proficiency with **{prof}** saving throws.")
                 return
             write_character(ctx.guild.id, ctx.author.id, field, 0)
-            await ctx.send(f"Your **{prof}** saving throw proficiency has been removed")
+            await ctx.send(f"Your **{prof}** saving throw proficiency is removed")
             return
 
     # ===Miscellaneous ===
@@ -1000,17 +1000,47 @@ class Character(commands.Cog):
         field = f"misc_{skill.replace(' ', '_')}_prof"
 
         if char[field] == bonus:
-            await ctx.send(f"Your **{skill}** skill **already** has **{normalizer(bonus)}** miscellaneous bonus.")
+            await ctx.send(f"Your **{skill}** skill **already** have **{normalizer(bonus)}** miscellaneous bonus.")
             return
         
         write_character(ctx.guild.id, ctx.author.id, field, bonus)
 
-        await ctx.send(f"Your **{skill}** skill **now** has **{normalizer(bonus)}** miscellaneous bonus.")
+        await ctx.send(f"Your **{skill}** skill **now** have **{normalizer(bonus)}** miscellaneous bonus.")
         
         
     @misc.command()
-    async def save(self, ctx, prof: str, bonus: int):
-        pass
+    async def save(self, ctx, skill: str, bonus: int):
+        char = read_character(ctx.guild.id, ctx.author.id)
+        skill = skill.lower().strip()
+
+        allowed_skill_inputs = ["strength","dexterity","constitution","wisdom","intelligence","charisma"]
+        
+        skill_aliases = {
+            "str": "strength",
+            "dex": "dexterity",
+            "con": "constitution",
+            "wis": "wisdom",
+            "int": "intelligence",
+            "chr": "charisma"
+            }
+        
+        skill = skill_aliases.get(skill, skill)
+
+        if skill not in allowed_skill_inputs:
+            await ctx.send("Invalid **Ability Score** Type.")
+            return
+        
+        field = f"misc_{skill}_save_prof"
+
+        if char[field] == bonus:
+            await ctx.send(f"Your **{skill}** saves **already** have **{normalizer(bonus)}** miscellaneous bonus.")
+            return
+        
+        write_character(ctx.guild.id, ctx.author.id, field, bonus)
+
+        await ctx.send(f"Your **{skill}** saving throws **now** has **{normalizer(bonus)}** miscellaneous bonus.")
+
+    # ===TODO-Reset===
 
     @misc.command()
     async def reset(self, ctx):
