@@ -979,6 +979,47 @@ class Character(commands.Cog):
 
         await ctx.send(embed=embed)
 
+    @misc.command()
+    async def skill(self, ctx, skill: str, *, bonus: int):
+        char = read_character(ctx.guild.id, ctx.author.id)
+        skill = skill.lower().strip()
+
+        allowed_skill_inputs = ["athletics","acrobatics","sleight of hand","stealth","arcana","history","investigation","nature","religion","animal handling","insight","medicine","perception","survival","deception","intimidation","performance","persuasion"]
+        
+        skill_aliases = {
+            "soh": "sleight of hand",
+            "animal": "animal handling"
+            }
+        
+        skill = skill_aliases.get(skill, skill)
+
+        if skill not in allowed_skill_inputs:
+            await ctx.send("Invalid **Skill** Type.")
+            return
+        
+        field = f"misc_{skill.replace(' ', '_')}_prof"
+
+        if char[field] == bonus:
+            await ctx.send(f"Your **{skill}** skill **already** has **{bonus}** miscellaneous bonus.")
+            return
+        
+        write_character(ctx.guild.id, ctx.author.id, field, bonus)
+
+        await ctx.send(f"Your **{skill}** skill **now** has **{bonus}** miscellaneous bonus.")
+        
+        
+    @misc.command()
+    async def save(self, ctx, prof: str, bonus: int):
+        pass
+
+    @misc.command()
+    async def reset(self, ctx):
+        #This command needs confirmation for accidental deletion risk
+        #Add this to reset command line instead as !reset misc
+        pass
+        
+
+
         
         
         
