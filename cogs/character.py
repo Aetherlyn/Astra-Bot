@@ -1048,6 +1048,7 @@ class Character(commands.Cog):
     
     @reset.command()
     async def char(self, ctx):
+        #Do not actually test this until you are done testing and implementing rest of the reset commandline
         view = ConfirmView(ctx.author)
 
         await ctx.send(
@@ -1061,7 +1062,7 @@ class Character(commands.Cog):
             await ctx.send("Timed out.")
         elif view.value:
             await ctx.send("Character deleted.")
-            # I will put the delete/reset function here later.
+            delete_character(ctx.guild.id, ctx.author.id)
         else:
             await ctx.send("Cancelled.")
             
