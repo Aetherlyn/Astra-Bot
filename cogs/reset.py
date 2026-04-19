@@ -112,6 +112,50 @@ class Reset(commands.Cog):
         else:
             await ctx.send("Cancelled.")
 
+    @reset.command
+    async def miscall(self, ctx):
+        view = ConfirmView(ctx.author)
+        
+        miscall = {
+            "misc_athletics_prof": 0,
+            "misc_acrobatics_prof": 0,
+            "misc_sleight_of_hand_prof": 0,
+            "misc_stealth_prof": 0,
+            "misc_arcana_prof": 0,
+            "misc_history_prof": 0,
+            "misc_investigation_prof": 0,
+            "misc_nature_prof": 0,
+            "misc_religion_prof": 0,
+            "misc_animal_handling_prof": 0,
+            "misc_insight_prof": 0,
+            "misc_medicine_prof": 0,
+            "misc_perception_prof": 0,
+            "misc_survival_prof": 0,
+            "misc_deception_prof": 0,
+            "misc_intimidation_prof": 0,
+            "misc_performance_prof": 0,
+            "misc_persuasion_prof": 0,
+            "misc_strength_save_prof": 0,
+            "misc_dexterity_save_prof": 0,
+            "misc_constitution_save_prof": 0,
+            "misc_intelligence_save_prof": 0,
+            "misc_wisdom_save_prof": 0,
+            "misc_charisma_save_prof": 0,
+        }
+
+        await ctx.send("Do you really wish to reset your all misc bonuses?", view=view)
+
+        await view.wait()
+
+        if view.value is None:
+            await ctx.send("Timed out.")
+        elif view.value:
+            for key, value in miscall.items():
+                write_character(ctx.guild.id, ctx.author.id, key, value)
+            await ctx.send("All misc values have been reset.")
+        else:
+            await ctx.send("Cancelled.")
+
 
 def setup(bot: commands.Bot):
     bot.add_cog(Reset(bot))
