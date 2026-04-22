@@ -9,9 +9,7 @@ class ConfirmView(discord.ui.View):
     async def interaction_check(self, interaction: discord.Interaction) -> bool:
         if interaction.user != self.author:
             await interaction.response.send_message(
-                "This isn't your confirmation.",
-                ephemeral=True
-            )
+                "This isn't your confirmation.", ephemeral=True)
             return False
         return True
 
@@ -19,14 +17,14 @@ class ConfirmView(discord.ui.View):
     async def confirm(self, button, interaction):
         self.value = True
         self.disable_all_items()
-        await interaction.response.edit_message(content="Confirmed.", view=self)
+        await interaction.response.edit_message(view=self)
         self.stop()
 
     @discord.ui.button(label="Cancel", style=discord.ButtonStyle.secondary)
     async def cancel(self, button, interaction):
         self.value = False
         self.disable_all_items()
-        await interaction.response.edit_message(content="Cancelled.", view=self)
+        await interaction.response.edit_message(view=self)
         self.stop()
 
     async def timeout_event(self):
