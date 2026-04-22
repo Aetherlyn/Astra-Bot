@@ -40,6 +40,12 @@ class Reset(commands.Cog):
             
     @reset.command()
     async def stats(self, ctx):
+        embed = discord.Embed(
+            title="Stat Reset",
+            description="Do the thing?",
+            color=discord.Color.red()
+            )
+        
         view = ConfirmView(ctx.author)
 
         stats = {
@@ -61,18 +67,19 @@ class Reset(commands.Cog):
             "exhaustion": 0,
         }
 
-        await ctx.send("Do you really wish to reset your stats?", view=view)
+        msg = await ctx.send(embed=embed, view=view)
 
         await view.wait()
 
         if view.value is None:
-            await ctx.send("Timed out.")
+            timeout_embed= discord.Embed(description = "Event timed out", color=discord.Color.orange())
+            await msg.edit(embed=timeout_embed, view=None)
         elif view.value:
             for key, value in stats.items():
                 write_character(ctx.guild.id, ctx.author.id, key, value)
-            await ctx.send("Stats have been reset.")
+            await msg.edit(content="Stats have been reset.", embed=None, view=None)
         else:
-            await ctx.send("Cancelled.")
+            await msg.edit(content="Cancelled.", embed=None, view=None)
 
     @reset.command()
     async def skills(self, ctx):
@@ -253,7 +260,7 @@ class Reset(commands.Cog):
             await ctx.send("Cancelled.")
 
     @reset.command()
-    async def tools(self, ctx):
+    async def tools(self, ctx):            
         view = ConfirmView(ctx.author)
 
         await ctx.send("Do you really wish to reset your tool proficiencies?", view=view)
