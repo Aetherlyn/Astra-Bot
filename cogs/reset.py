@@ -12,6 +12,8 @@ class Reset(commands.Cog):
 
     # === Reset ===
 
+    #TODO- DO not allow these command line to trigger if someone does not have an active character just like in character.py cog general event handler.
+
     #TODO-In the final version, revise all of the commands for extra feedback answers and trim them, and possibly turn the messages into embed messages.
 
     @commands.group()
@@ -42,7 +44,7 @@ class Reset(commands.Cog):
     async def stats(self, ctx):
         embed = discord.Embed(
             title="Stat Reset",
-            description="Do the thing?",
+            description="Do you wish to reset your core stats?",
             color=discord.Color.red()
             )
         
@@ -65,6 +67,14 @@ class Reset(commands.Cog):
             "initiative": 0,
             "inspiration": 0,
             "exhaustion": 0,
+            "hd_d6": 0,
+            "current_hd_d6": 0,
+            "hd_d8": 0,
+            "current_hd_d8": 0,
+            "hd_d10": 0,
+            "current_hd_d10": 0,
+            "hd_d12": 0,
+            "current_hd_d12": 0,
         }
 
         msg = await ctx.send(embed=embed, view=view)
