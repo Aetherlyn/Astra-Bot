@@ -40,9 +40,11 @@ class Reset(commands.Cog):
             await msg.edit(embed=timeout_embed, view=None)
         elif view.value:
             delete_character(ctx.guild.id, ctx.author.id)
-            await msg.edit(content="Character deleted.", embed=None, view=None)  
+            confirm_embed= discord.Embed(description= "Character deleted.", color=discord.Color.green())
+            await msg.edit(embed=confirm_embed, view=None)
         else:
-            await ctx.send("Cancelled.")
+            cancel_embed= discord.Embed(description="Cancelled.", color=discord.Color.light_grey())
+            await msg.edit(embed=cancel_embed, view=None)
             
     @reset.command()
     async def stats(self, ctx):
@@ -91,9 +93,11 @@ class Reset(commands.Cog):
         elif view.value:
             for key, value in stats.items():
                 write_character(ctx.guild.id, ctx.author.id, key, value)
-            await msg.edit(content="Stats have been reset.", embed=None, view=None)
+            confirm_embed= discord.Embed(description= "Stats have been reset.", color=discord.Color.green())
+            await msg.edit(embed=confirm_embed, view=None)
         else:
-            await msg.edit(content="Cancelled.", embed=None, view=None)
+            cancel_embed= discord.Embed(description="Cancelled.", color=discord.Color.light_grey())
+            await msg.edit(embed=cancel_embed, view=None)
 
     @reset.command()
     async def skills(self, ctx):
@@ -136,9 +140,11 @@ class Reset(commands.Cog):
         elif view.value:
             for key, value in stats.items():
                 write_character(ctx.guild.id, ctx.author.id, key, value)
-            await msg.edit(content="Skills have been reset.", embed=None, view=None)                
+            confirm_embed= discord.Embed(description= "Skills have been reset.", color=discord.Color.green())
+            await msg.edit(embed=confirm_embed, view=None)
         else:
-            await ctx.send("Cancelled.")
+            cancel_embed= discord.Embed(description="Cancelled.", color=discord.Color.light_grey())
+            await msg.edit(embed=cancel_embed, view=None)
 
     @reset.command()
     async def miscall(self, ctx):
@@ -187,9 +193,11 @@ class Reset(commands.Cog):
         elif view.value:
             for key, value in miscall.items():
                 write_character(ctx.guild.id, ctx.author.id, key, value)
-            await msg.edit(content="All misc values have been reset.", embed=None, view=None)
+            confirm_embed= discord.Embed(description= "All misc values have been reset.", color=discord.Color.green())
+            await msg.edit(embed=confirm_embed, view=None)
         else:
-            await msg.edit(content="Cancelled.", embed=None, view=None)
+            cancel_embed= discord.Embed(description="Cancelled.", color=discord.Color.light_grey())
+            await msg.edit(embed=cancel_embed, view=None)
 
     @reset.command()
     async def miscskill(self, ctx):
@@ -232,9 +240,11 @@ class Reset(commands.Cog):
         elif view.value:
             for key, value in miscall.items():
                 write_character(ctx.guild.id, ctx.author.id, key, value)
-            await msg.edit(content="Skill misc values have been reset.", embed=None, view=None)
+            confirm_embed= discord.Embed(description= "Skill misc values have been reset.", color=discord.Color.green())
+            await msg.edit(embed=confirm_embed, view=None)
         else:
-            await msg.edit(content="Cancelled.", embed=None, view=None)
+            cancel_embed= discord.Embed(description="Cancelled.", color=discord.Color.light_grey())
+            await msg.edit(embed=cancel_embed, view=None)
     
     @reset.command()
     async def miscsave(self, ctx):
@@ -265,9 +275,11 @@ class Reset(commands.Cog):
         elif view.value:
             for key, value in miscall.items():
                 write_character(ctx.guild.id, ctx.author.id, key, value)
-            await msg.edit(content="Save misc values have been reset.", embed=None, view=None)
+            confirm_embed= discord.Embed(description= "Save misc values have been reset.", color=discord.Color.green())
+            await msg.edit(embed=confirm_embed, view=None)
         else:
-            await msg.edit(content="Cancelled.", embed=None, view=None)
+            cancel_embed= discord.Embed(description="Cancelled.", color=discord.Color.light_grey())
+            await msg.edit(embed=cancel_embed, view=None)
 
     @reset.command()
     async def weapons(self, ctx):
@@ -288,9 +300,11 @@ class Reset(commands.Cog):
             await msg.edit(embed=timeout_embed, view=None)
         elif view.value:
             write_character(ctx.guild.id, ctx.author.id, "weapons", "")
-            await msg.edit(content="Weapon proficiencies have been reset.", embed=None, view=None)
+            confirm_embed= discord.Embed(description= "Weapon proficiencies have been reset.", color=discord.Color.green())
+            await msg.edit(embed=confirm_embed, view=None)
         else:
-            await msg.edit(content="Cancelled.", embed=None, view=None)
+            cancel_embed= discord.Embed(description="Cancelled.", color=discord.Color.light_grey())
+            await msg.edit(embed=cancel_embed, view=None)
 
     @reset.command()
     async def armor(self, ctx):
@@ -311,10 +325,11 @@ class Reset(commands.Cog):
             await msg.edit(embed=timeout_embed, view=None)
         elif view.value:
             write_character(ctx.guild.id, ctx.author.id, "armor", "")
-            await msg.edit(content="Armor proficiencies have been reset.", embed=None, view=None)
+            confirm_embed= discord.Embed(description= "Armor proficiencies have been reset.", color=discord.Color.green())
+            await msg.edit(embed=confirm_embed, view=None)
         else:
-            await msg.edit(content="Cancelled.", embed=None, view=None)
-
+            cancel_embed= discord.Embed(description="Cancelled.", color=discord.Color.light_grey())
+            await msg.edit(embed=cancel_embed, view=None)
     @reset.command()
     async def tools(self, ctx):
         embed = discord.Embed(
@@ -334,9 +349,11 @@ class Reset(commands.Cog):
             await msg.edit(embed=timeout_embed, view=None)
         elif view.value:
             write_character(ctx.guild.id, ctx.author.id, "tools", "")
-            await msg.edit(content="Tool proficiencies have been reset.", embed=None, view=None)
+            confirm_embed= discord.Embed(description= "Tool proficiencies have been reset.", color=discord.Color.green())
+            await msg.edit(embed=confirm_embed, view=None)
         else:
-            await msg.edit(content="Cancelled.", embed=None, view=None)
+            cancel_embed= discord.Embed(description="Cancelled.", color=discord.Color.light_grey())
+            await msg.edit(embed=cancel_embed, view=None)
             
     @reset.command()
     async def languages(self, ctx):
@@ -357,9 +374,11 @@ class Reset(commands.Cog):
             await msg.edit(embed=timeout_embed, view=None)
         elif view.value:
             write_character(ctx.guild.id, ctx.author.id, "languages", "")
-            await msg.edit(content="Language proficiencies have been reset.", embed=None, view=None)
+            confirm_embed= discord.Embed(description= "Language proficiencies have been reset.", color=discord.Color.green())
+            await msg.edit(embed=confirm_embed, view=None)
         else:
-            await msg.edit(content="Cancelled.", embed=None, view=None)
+            cancel_embed= discord.Embed(description="Cancelled.", color=discord.Color.light_grey())
+            await msg.edit(embed=cancel_embed, view=None)
 
 def setup(bot: commands.Bot):
     bot.add_cog(Reset(bot))
