@@ -23,20 +23,24 @@ class Reset(commands.Cog):
     @reset.command()
     async def char(self, ctx):
         #Do not actually test this until you are done testing and implementing rest of the reset commandline
+        embed = discord.Embed(
+            title="Char Delete",
+            description="Do you really wish to delete your character?",
+            color=discord.Color.red()
+            )
+              
         view = ConfirmView(ctx.author)
 
-        await ctx.send(
-            "Do you really wish to delete your character?",
-            view=view
-        )
+        msg = await ctx.send(embed=embed, view=view)
 
         await view.wait()
 
         if view.value is None:
-            await ctx.send("Timed out.")
+            timeout_embed= discord.Embed(description = "Event timed out", color=discord.Color.orange())
+            await msg.edit(embed=timeout_embed, view=None)
         elif view.value:
-            await ctx.send("Character deleted.")
             delete_character(ctx.guild.id, ctx.author.id)
+            await msg.edit(content="Character deleted.", embed=None, view=None)  
         else:
             await ctx.send("Cancelled.")
             
@@ -93,6 +97,12 @@ class Reset(commands.Cog):
 
     @reset.command()
     async def skills(self, ctx):
+        embed = discord.Embed(
+            title="Skill Reset",
+            description="Do you really wish to reset your skill proficiencies?",
+            color=discord.Color.red()
+            )
+                
         view = ConfirmView(ctx.author)
 
         stats = {
@@ -116,21 +126,28 @@ class Reset(commands.Cog):
             "persuasion_prof": 0,
         }
 
-        await ctx.send("Do you really wish to reset your skill proficiencies?", view=view)
+        msg = await ctx.send(embed=embed, view=view)
 
         await view.wait()
 
         if view.value is None:
-            await ctx.send("Timed out.")
+            timeout_embed= discord.Embed(description = "Event timed out", color=discord.Color.orange())
+            await msg.edit(embed=timeout_embed, view=None)
         elif view.value:
             for key, value in stats.items():
                 write_character(ctx.guild.id, ctx.author.id, key, value)
-            await ctx.send("Skills have been reset.")
+            await msg.edit(content="Skills have been reset.", embed=None, view=None)                
         else:
             await ctx.send("Cancelled.")
 
     @reset.command()
     async def miscall(self, ctx):
+        embed = discord.Embed(
+            title="Miscellaneous overall reset",
+            description="Do you really wish to reset your all misc bonuses?",
+            color=discord.Color.red()
+            )
+        
         view = ConfirmView(ctx.author)
         
         miscall = {
@@ -160,21 +177,28 @@ class Reset(commands.Cog):
             "misc_charisma_save_prof": 0,
         }
 
-        await ctx.send("Do you really wish to reset your all misc bonuses?", view=view)
+        msg = await ctx.send(embed=embed, view=view)
 
         await view.wait()
 
         if view.value is None:
-            await ctx.send("Timed out.")
+            timeout_embed= discord.Embed(description = "Event timed out", color=discord.Color.orange())
+            await msg.edit(embed=timeout_embed, view=None)
         elif view.value:
             for key, value in miscall.items():
                 write_character(ctx.guild.id, ctx.author.id, key, value)
-            await ctx.send("All misc values have been reset.")
+            await msg.edit(content="All misc values have been reset.", embed=None, view=None)
         else:
-            await ctx.send("Cancelled.")
+            await msg.edit(content="Cancelled.", embed=None, view=None)
 
     @reset.command()
     async def miscskill(self, ctx):
+        embed = discord.Embed(
+            title="Miscellaneous skill bonus reset",
+            description="Do you really wish to reset your misc skill bonuses?",
+            color=discord.Color.red()
+            )
+                
         view = ConfirmView(ctx.author)
         
         miscall = {
@@ -198,21 +222,28 @@ class Reset(commands.Cog):
             "misc_persuasion_prof": 0,
         }
 
-        await ctx.send("Do you really wish to reset your misc skill bonuses?", view=view)
+        msg = await ctx.send(embed=embed, view=view)
 
         await view.wait()
 
         if view.value is None:
-            await ctx.send("Timed out.")
+            timeout_embed= discord.Embed(description = "Event timed out", color=discord.Color.orange())
+            await msg.edit(embed=timeout_embed, view=None)
         elif view.value:
             for key, value in miscall.items():
                 write_character(ctx.guild.id, ctx.author.id, key, value)
-            await ctx.send("Skill misc values have been reset.")
+            await msg.edit(content="Skill misc values have been reset.", embed=None, view=None)
         else:
-            await ctx.send("Cancelled.")
+            await msg.edit(content="Cancelled.", embed=None, view=None)
     
     @reset.command()
     async def miscsave(self, ctx):
+        embed = discord.Embed(
+            title="Miscellaneous save bonus reset",
+            description="Do you really wish to reset your misc save bonuses?",
+            color=discord.Color.red()
+            )
+        
         view = ConfirmView(ctx.author)
         
         miscall = {
@@ -224,82 +255,111 @@ class Reset(commands.Cog):
             "misc_charisma_save_prof": 0,
         }
 
-        await ctx.send("Do you really wish to reset your misc save bonuses?", view=view)
+        msg = await ctx.send(embed=embed, view=view)
 
         await view.wait()
 
         if view.value is None:
-            await ctx.send("Timed out.")
+            timeout_embed= discord.Embed(description = "Event timed out", color=discord.Color.orange())
+            await msg.edit(embed=timeout_embed, view=None)
         elif view.value:
             for key, value in miscall.items():
                 write_character(ctx.guild.id, ctx.author.id, key, value)
-            await ctx.send("Misc save values have been reset.")
+            await msg.edit(content="Save misc values have been reset.", embed=None, view=None)
         else:
-            await ctx.send("Cancelled.")
+            await msg.edit(content="Cancelled.", embed=None, view=None)
 
     @reset.command()
     async def weapons(self, ctx):
+        embed = discord.Embed(
+            title="Weapon proficiency reset",
+            description="Do you really wish to reset your weapon proficiencies?",
+            color=discord.Color.red()
+            )
+        
         view = ConfirmView(ctx.author)
 
-        await ctx.send("Do you really wish to reset your weapon proficiencies?", view=view)
+        msg = await ctx.send(embed=embed, view=view)
 
         await view.wait()
         
         if view.value is None:
-            await ctx.send("Timed out.")
+            timeout_embed= discord.Embed(description = "Event timed out", color=discord.Color.orange())
+            await msg.edit(embed=timeout_embed, view=None)
         elif view.value:
             write_character(ctx.guild.id, ctx.author.id, "weapons", "")
-            await ctx.send("Weapon proficiencies have been reset.")
+            await msg.edit(content="Weapon proficiencies have been reset.", embed=None, view=None)
         else:
-            await ctx.send("Cancelled.")
+            await msg.edit(content="Cancelled.", embed=None, view=None)
 
     @reset.command()
     async def armor(self, ctx):
+        embed = discord.Embed(
+            title="Armor proficiency reset",
+            description="Do you really wish to reset your armor proficiencies?",
+            color=discord.Color.red()
+            )
+        
         view = ConfirmView(ctx.author)
 
-        await ctx.send("Do you really wish to reset your armor proficiencies?", view=view)
+        msg = await ctx.send(embed=embed, view=view)
 
         await view.wait()
         
         if view.value is None:
-            await ctx.send("Timed out.")
+            timeout_embed= discord.Embed(description = "Event timed out", color=discord.Color.orange())
+            await msg.edit(embed=timeout_embed, view=None)
         elif view.value:
             write_character(ctx.guild.id, ctx.author.id, "armor", "")
-            await ctx.send("Armor proficiencies have been reset.")
+            await msg.edit(content="Armor proficiencies have been reset.", embed=None, view=None)
         else:
-            await ctx.send("Cancelled.")
+            await msg.edit(content="Cancelled.", embed=None, view=None)
 
     @reset.command()
-    async def tools(self, ctx):            
+    async def tools(self, ctx):
+        embed = discord.Embed(
+            title="Tool proficiency reset",
+            description="Do you really wish to reset your tool proficiencies?",
+            color=discord.Color.red()
+            )
+                    
         view = ConfirmView(ctx.author)
 
-        await ctx.send("Do you really wish to reset your tool proficiencies?", view=view)
+        msg = await ctx.send(embed=embed, view=view)
 
         await view.wait()
         
         if view.value is None:
-            await ctx.send("Timed out.")
+            timeout_embed= discord.Embed(description = "Event timed out", color=discord.Color.orange())
+            await msg.edit(embed=timeout_embed, view=None)
         elif view.value:
             write_character(ctx.guild.id, ctx.author.id, "tools", "")
-            await ctx.send("Tool proficiencies have been reset.")
+            await msg.edit(content="Tool proficiencies have been reset.", embed=None, view=None)
         else:
-            await ctx.send("Cancelled.")
+            await msg.edit(content="Cancelled.", embed=None, view=None)
             
     @reset.command()
     async def languages(self, ctx):
+        embed = discord.Embed(
+            title="Language proficiency reset",
+            description="Do you really wish to reset your language proficiencies?",
+            color=discord.Color.red()
+            )
+        
         view = ConfirmView(ctx.author)
 
-        await ctx.send("Do you really wish to reset your language proficiencies?", view=view)
+        msg = await ctx.send(embed=embed, view=view)
 
         await view.wait()
         
         if view.value is None:
-            await ctx.send("Timed out.")
+            timeout_embed= discord.Embed(description = "Event timed out", color=discord.Color.orange())
+            await msg.edit(embed=timeout_embed, view=None)
         elif view.value:
             write_character(ctx.guild.id, ctx.author.id, "languages", "")
-            await ctx.send("Language proficiencies have been reset.")
+            await msg.edit(content="Language proficiencies have been reset.", embed=None, view=None)
         else:
-            await ctx.send("Cancelled.")
+            await msg.edit(content="Cancelled.", embed=None, view=None)
 
 def setup(bot: commands.Bot):
     bot.add_cog(Reset(bot))
