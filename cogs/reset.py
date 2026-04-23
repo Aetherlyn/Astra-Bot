@@ -23,6 +23,15 @@ class Reset(commands.Cog):
             return False
         else:
             return True
+        
+    # === General Error Handler ===
+
+    async def cog_command_error(self, ctx, error):
+        
+        # === Char ===
+        
+        if isinstance(error, CheckFailure):
+            return
 
     # === Reset ===
 
