@@ -60,6 +60,15 @@ class Meta(commands.Cog):
                    ),
             inline=False
         )
+
+        embed.add_field(
+            name="Char",
+            value=("**![char]**: Creates a blank character sheet on the first use, otherwise prints out existing one.\n"
+                   "**![char set]**: Assigns the corresponding section with a given value. Primary way of modifying character sheet. Usage: **!char set** <field> <value>\n"
+                   "**![char view]**: Shows a character sheet that belongs to another guild member if the member has one. Usage: **!char view** <username>\n"
+                   ),
+            inline=False
+        )
         await ctx.send(embed = embed)
 
 
