@@ -69,6 +69,17 @@ class Meta(commands.Cog):
                    ),
             inline=False
         )
+        
+        embed.add_field(
+            name="Insp",
+            value=("**![insp]**: Quick check command for inspiration status instead of !char.\n"
+                   "**![insp add]**: Adds an inspiration point to your character\n"
+                   "**![insp use]**: Burns existing inspiration point\n"
+                   "**![insp give]**: Transfers inspiration point to given username's character. Usage: **!insp give** <username>\n"                   
+                   ),
+            inline=False
+        )        
+        
         await ctx.send(embed = embed)
 
 
