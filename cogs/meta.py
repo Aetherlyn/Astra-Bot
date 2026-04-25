@@ -87,7 +87,7 @@ class Meta(commands.Cog):
                    "**![hp maxhp]**: Sets the provided amount as the maximum hit point capacity bonus. Resets back to zero with the !rest command.\n"
                    "**![hp damage]**: Subtracts the provided amount of hit points from the total pool, prioratizing the temporary hit points first. Usage: **!hp damage** <amount> \n"
                    "**![hp heal]** Adds the provided amount of hit points from the total pool. Usage: **!hp heal** <amount> \n"
-                   "**![hp remove]** Removes either temporary hit points or the maximum hit point bonus. Usage: **!hp remove** <amount> \n"                                         
+                   "**![hp remove]** Removes either temporary hit points or the maximum hit point bonus. Usage: **!hp remove** temp/maxhp \n"                                         
                    ),
             inline=False
         )            
