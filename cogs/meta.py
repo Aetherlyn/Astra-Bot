@@ -101,7 +101,17 @@ class Meta(commands.Cog):
                    "**![hd restore]** Adds the provided amount of hit dice to the current pool. Usage: **!hd restore** <amount> \n"                                         
                    ),
             inline=False
-        )            
+        )
+
+        embed.add_field(
+            name="Rest & Exhaustion",
+            value=("**![rest]**: Resets temporary hit point and maximum hit point bonuses back to zero, restores hit points to maximum and half of hit dices.\n"
+                   "**![exh]**: Quick check command for exhaustion status instead of !char.\n"
+                   "**![exh add]**: Adds an exhaustion point.\n"
+                   "**![exh reduce]**: Subtracts an exhaustion point. \n"                                       
+                   ),
+            inline=False
+        )             
         
         await ctx.send(embed = embed)
 
