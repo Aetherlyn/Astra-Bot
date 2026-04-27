@@ -122,7 +122,15 @@ class Meta(commands.Cog):
             inline=False
         )                  
              
-        
+        embed.add_field(
+            name="Miscellaneous",
+            value=("**![misc]**: Displays your existing miscellaneous bonuses for skills and saving throws.\n"
+                   "**![misc skill]**: Sets the miscellaneous proficiency bonus of a chosen skill. Not additive. Usage: **!misc skill** <skill> <amount> \n"
+                   "**![misc save]**: Sets miscellaneous proficiency bonus of a chosen saving throw. Not additive. Usage: **!misc save** <ability score name> <amount> \n"                                     
+                   ),
+            inline=False
+        )          
+
         await ctx.send(embed = embed)
 
 
