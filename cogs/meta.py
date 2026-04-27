@@ -72,7 +72,7 @@ class Meta(commands.Cog):
         
         embed.add_field(
             name="Inspiration",
-            value=("**![insp]**: Quick check command for inspiration status instead of !char.\n"
+            value=("**![insp]**: Alternative check command for inspiration status instead of !char.\n"
                    "**![insp add]**: Adds an inspiration point to your character\n"
                    "**![insp use]**: Burns existing inspiration point\n"
                    "**![insp give]**: Transfers inspiration point to given username's character. Usage: **!insp give** <username>\n"                   
@@ -82,7 +82,7 @@ class Meta(commands.Cog):
         
         embed.add_field(
             name="Hit Point",
-            value=("**![hp]**: Quick check command for hit point status instead of !char.\n"
+            value=("**![hp]**: Alternative check command for hit point status instead of !char.\n"
                    "**![hp temp]**: Sets the provided amount as the temporary hit poing, not additive. Resets back to zero with the !rest command.\n"
                    "**![hp maxhp]**: Sets the provided amount as the maximum hit point capacity bonus. Resets back to zero with the !rest command.\n"
                    "**![hp damage]**: Subtracts the provided amount of hit points from the total pool, prioratizing the temporary hit points first. Usage: **!hp damage** <amount> \n"
@@ -94,7 +94,7 @@ class Meta(commands.Cog):
         
         embed.add_field(
             name="Hit Dice",
-            value=("**![hd]**: Quick check command for hit dice status instead of !char.\n"
+            value=("**![hd]**: Alternative check command for hit dice status instead of !char.\n"
                    "**![hd addmax]**: Add the provided amount on top of your maximum hit dice capacity.\n"
                    "**![hd reducemax]**: Subtracts the provided amount as the maximum hit point capacity bonus. Resets back to zero with the !rest command.\n"
                    "**![hd use]**: Subtracts the provided amount of hit dice from the current pool. Usage: **!hd use** <amount> \n"
@@ -106,12 +106,22 @@ class Meta(commands.Cog):
         embed.add_field(
             name="Rest & Exhaustion",
             value=("**![rest]**: Resets temporary hit point and maximum hit point bonuses back to zero, restores hit points to maximum and half of hit dices.\n"
-                   "**![exh]**: Quick check command for exhaustion status instead of !char.\n"
+                   "**![exh]**: Alternative check command for exhaustion status instead of !char.\n"
                    "**![exh add]**: Adds an exhaustion point.\n"
                    "**![exh reduce]**: Subtracts an exhaustion point. \n"                                       
                    ),
             inline=False
-        )             
+        )
+
+        embed.add_field(
+            name="Proficiency",
+            value=("**![prof]**: Displays information about the proficiency status of each skill and saving throw.\n"
+                   "**![prof skill]**: Sets the proficiency level of a chosen skill. Usage: **!prof skill** <none/half/full/double> <skill name> \n"
+                   "**![prof save]**: Sets the proficiency level of a chosen saving throw. Usage: **!prof save** <none/half/full/double> <ability score name> \n"                                     
+                   ),
+            inline=False
+        )                  
+             
         
         await ctx.send(embed = embed)
 
