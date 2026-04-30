@@ -1,55 +1,83 @@
 # Installation Guide
 
-1- Open the terminal and clone the repository:
+## 1. Clone the repository
+
 ```bash
 git clone <repository_url>
 cd <repository_directory>
 ```
-2- Install dependencies:
+
+## 2. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3- Go to the [Discord Developer Portal](https://discord.com/developers/home) and sign into your Discord account
+## 3. Create a Discord Application
 
-4- Go to the "Applications" section and create a "New Application"
+Go to the [Discord Developer Portal](https://discord.com/developers/home)
 
-5- Select the newly created app and under overview menu, go to the "Bot" section
+* Sign in
+* Go to **Applications**
+* Click and create a **New Application**
 
-6- Check "Public Bot" if it is not checked.
+## 4. Configure the Bot
 
-7- Click on the "Reset Token" and copy it.
+* Open your application
+* Go to the **Bot** section
+* Enable **Public Bot** (if needed)
+* Click **Reset Token** and copy it
 
-8- Create a file called ==.env== in the root directory of the project
+## 5. Create environment file
 
-9- Edit the ==.env== file to have your bot key as variable named ==TOKEN==
+Create a file named `.env` in the project root:
 
-10- Paste your previously copied token
-	Example: ==TOKEN=LZeB8R5S0QCGbWqkazf2iGtPR8eXKB==
-	Note: *Never share your token with anyone for the safety of your bot*
+```env
+TOKEN=your_bot_token_here
+```
 
-11- Go back to previous **Bot** section and under **Privileged Gateway Intents** and check **Server Members Intent** and **Message Content Intent**
+Note: Never share your token with anyone.
 
-12- Go to **OAuth2** section under overview menu just above **Bot**
+## 6. Enable intents
 
-13- Under **Scopes** check the box that says ==bot==
+In the **Bot** section, enable:
 
-14- Under **Bot Permissions** check these boxes:
-	14.1- General Permissions:
-		- Manage Roles
-		- View Messages
-	14.2-Text Permissions:
-		- Send Messages
-		- Create Public Threads
-		- Send Messages in Threads
-		- Manage Threads
-		- Embed Links
-		- Attach Files
-		- Use External Emojis
-		- Add Reactions
-		- Create Polls
+* Server Members Intent
+* Message Content Intent
 
-15-  Copy the generated URL at the bottom of the page and use it to invite the bot into your Discord guild.
+## 7. Set up OAuth2 link
 
-16- Run bot.py
+* Go to **OAuth2** under **Overview** menu, just above **Bot**.
+* Under **Scopes**, select:
+
+  * `bot`
+* Under **Bot Permissions**, enable:
+
+### General Permissions
+
+* Manage Roles
+* View Channels
+
+### Text Permissions
+
+* Send Messages
+* Create Public Threads
+* Send Messages in Threads
+* Manage Threads
+* Embed Links
+* Attach Files
+* Use External Emojis
+* Add Reactions
+* Create Polls
+
+## 8. Invite the bot
+
+* Copy the generated URL from the bottom of the page
+* Paste and open it in your browser
+* Add the bot to your server
+
+## 9. Run the bot
+
+```bash
+python bot.py
+```
