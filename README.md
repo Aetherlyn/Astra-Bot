@@ -28,4 +28,5 @@ A detailed command library will be added soon for more information.
 - Individual and party inventory
 - Spell slot/point and spellbook
 - Better and extensive logging
+- PosgreSQL integration instead of SQLite
 - Blackjack minigame
